@@ -56,7 +56,44 @@ $$
 
 ---
 
-## 2. Variable Selection & Economic Rationale
+## 2. Model Outputs
+
+### Reduced Form: Key Outputs
+
+<p align="center">
+  <img src="img/logistic_simulated_data.png" width="750">
+</p>
+
+
+<p align="center">
+  <img src="img/logistic_industry_data.png" width="750">
+</p>
+
+
+
+### Structural Model (Merton): Monte Carlo Asset Paths
+
+<p align="center">
+  <img src="img/merton_paths_Ford.png" width="750">
+</p>
+
+In this case study of Ford Moter, Monte Carlo simulation generates stochastic asset value paths and compares them
+against the debt barrier, producing a structural probability of default (PD) and an intuitive distance-to-default interpretation. 
+
+Given that all simulated 10,000 paths witnesses the assets value sufficient to cover debt (shown as asset paths are above the "red" debt level), the probability of default is zero.
+
+### Strategy Signal (Model PD vs Market-Implied PD)
+
+<p align="center">
+  <img src="img/credit_signal.png" width="750">
+</p>
+
+Signal = Model PD - Market PD. Positive signals indicate underpriced risk
+(short credit), while negative signals indicate potential relative value (long credit).
+
+---
+
+## 3. Variable Selection & Economic Rationale
 Following the **Campbell-Hilscher-Szilagyi (2008)** framework, variables were selected to capture Solvency, Profitability, and Market Valuation.
 
 | Variable Category | Proxy Used (Code) | Economic Rationale | Expected Sign |
@@ -68,7 +105,7 @@ Following the **Campbell-Hilscher-Szilagyi (2008)** framework, variables were se
 
 ---
 
-## 3. Credit Strategy & Signal Generation
+## 4. Credit Strategy & Signal Generation
 The core objective of this project is to derive an actionable **credit strategy** by comparing the *Model-Implied PD* against the *Market-Implied PD*.
 
 $$
@@ -86,7 +123,7 @@ $$
 
 ---
 
-## 4. Technical Implementation
+## 5. Technical Implementation
 * **Languages & Libraries:** Python (`pandas`, `numpy`, `statsmodels`, `scipy`, `sklearn`).
 * **Data Sources:**
     * **Simulated Data:** Generated synthetic datasets to validate model parameters ("God Mode").
@@ -94,5 +131,7 @@ $$
 * **Visualization:** `matplotlib` for plotting Monte Carlo simulation paths and analyzing asset value distributions.
 
 ---
+
+
 
 *Disclaimer: This project is for academic and demonstration purposes only and does not constitute financial advice.*
