@@ -1,11 +1,6 @@
-# Credit-Strategy---Probability-of-Default-Estimation-in-Reduced-Form-and-Structural-Models
-Explore quantitative credit risk modeling on probability of default, and derive credit strategy based on model vs. market implication. Follow CFA Level III bottom-up credit strategy, reduced form model (logistic regression) and structural model (Geometric Motion) are applied, along with Monte Carlo simulation and credit recovery assumptions.
-
-
-# Quantitative Credit Strategy: Econometric Modeling & Structural Simulation
-
+# Bottom-Up Credit Strategy: Reduced Form Credit Model & Structural Credit Model
 ### Project Overview
-This repository implements a complete exercise on credit risk modeling - estimating probability of default and derive long/short strategy based on model results vs. market-implied result. 
+This repository implements a complete exercise on credit risk modeling on probability of default and derive long/short strategy based on model results vs. market-implied result. 
 
 Explictly in the industry, bottom-up credit strategy defines the universe of eligible bonds, then categorize the eligible universe into different groups, and then relative value analysis is employed to find bonds that are relatively undervalued or overvalued. 
 
@@ -13,33 +8,49 @@ In the relative value analysis family, two typical methodologies include **reduc
 
 My analysis is conducted on both **simulated datasets** (for theoretical validation) and **real data of publicly traded companies** (for empirical calibration), demonstrating a complete workflow from raw data ingestion to signal generation.
 
+## 📌 Project Overview
+This repository implements a dual-framework approach to quantitative credit risk modeling, designed to replicate the rigorous standards of **credit strategy in the industry**. By combining **econometric modeling** (Reduced Form) with **Monte Carlo simulation** (Structural Models), this project generates tradable credit signals (Long/Short) by identifying discrepancies between fundamental default risk and market-implied pricing.
+
+The analysis is conducted on both **simulated datasets** (for theoretical validation) and **real data of publicly traded companies** (for empirical calibration), demonstrating a complete workflow from raw data ingestion to signal generation.
+
 ---
 
 ## 1. The Modeling Framework
 
-### Part A: Reduced Form Model (Logistic Regression)
+### 🔹 Part A: Reduced Form Model (Logistic Regression)
 * **Objective:** To estimate the probability of default (PD) by analyzing **financial ratios** derived from **financial statement analysis**.
 * **Model Specification:** The probability of default, $P(Y=1)$, is modeled as a function of exogenous covariates using the Logistic function:
-  $$P(Default|X) = \frac{1}{1 + e^{-(\beta_0 + \beta_{Lev}X_{Lev} + \beta_{Prof}X_{Prof} + \dots )}}$$
+
+$$
+P(Default|X) = \frac{1}{1 + e^{-(\beta_0 + \beta_{Lev}X_{Lev} + \beta_{Prof}X_{Prof} + \dots )}}
+$$
+
   Where $\beta$ coefficients are estimated via **Maximum Likelihood Estimation (MLE)** to maximize the log-likelihood function of the observed default events.
+
 * **Data Complexity & Engineering:**
     * Addressed **data complexity** in the UCI Corporate Bankruptcy dataset (real industry data) through rigorous preprocessing.
     * Applied **Winsorization** to mitigate the impact of outliers common in corporate accounting data.
-    * Performed **Standardization** (Z-score scaling) to allow for direct comparison of coefficient sensitivity across variables with vastly different scales (e.g., Leverage vs. ROA).
-* **Key Findings:** The empirical results revealed that Profitability ratios often serve as a stronger predictor of corporate survival than pure Leverage metrics in specific market regimes.
+    * Performed **Standardization** (Z-score scaling) to allow for direct comparison of coefficient sensitivity across variables with vastly different scales.
 
-### Part B: Structural Model (Merton 1974)
-* **Objective:** To estimate the "Distance-to-Default" by viewing firm equity as a Call Option on its underlying assets.
+> **Key Finding:** Empirical results revealed that **Profitability ratios** often serve as a stronger predictor of corporate survival than pure Leverage metrics in specific market regimes.
+
+### 🔹 Part B: Structural Model (Merton 1974)
+* **Objective:** To estimate the "Distance-to-Default" by viewing firm equity as a **Call Option** on its underlying assets.
 * **Model Dynamics (GBM):** The unobservable Asset Value ($V_t$) is modeled as a **Geometric Brownian Motion** stochastic process:
-  $$dV_t = \mu V_t dt + \sigma_A V_t dZ_t$$
+
+$$
+dV_t = \mu V_t dt + \sigma_A V_t dZ_t
+$$
+
   Where:
   * $\mu$: Asset drift (expected return).
   * $\sigma_A$: Asset volatility (derived from Equity volatility).
   * $dZ_t$: A standard Wiener process (random shock).
+
 * **Methodology:**
-    * Reverse-engineered unobservable Asset Value ($V_A$) and Asset Volatility ($\sigma_A$) from observable market inputs using the relation $\sigma_A \approx \sigma_E \times \frac{E}{V}$.
-    * Deployed **Monte Carlo simulation** to generate 10,000 stochastic paths of asset value evolution over a $T=1$ year horizon.
-    * **Default Condition:** A firm defaults if the simulated asset value at maturity falls below the face value of debt ($V_T < D$).
+    1.  Reverse-engineered unobservable Asset Value ($V_A$) and Asset Volatility ($\sigma_A$) from observable market inputs using the relation $\sigma_A \approx \sigma_E \times \frac{E}{V}$.
+    2.  Deployed **Monte Carlo simulation** to generate **10,000 stochastic paths** of asset value evolution over a $T=1$ year horizon.
+    3.  **Default Condition:** A firm defaults if the simulated asset value at maturity falls below the face value of debt ($V_T < D$).
 
 ---
 
@@ -58,10 +69,13 @@ Following the **Campbell-Hilscher-Szilagyi (2008)** framework, variables were se
 ## 3. Credit Strategy & Signal Generation
 The core objective of this project is to derive an actionable **credit strategy** by comparing the *Model-Implied PD* against the *Market-Implied PD*.
 
-$$Signal = Model_{PD} - Market_{PD}$$
+$$
+Signal = Model_{PD} - Market_{PD}
+$$
 
 * **Credit Spread Estimation:** Market-Implied PDs are reverse-engineered from corporate bond yields and credit spreads (Yield - Risk-Free Rate) using standard hazard rate approximations.
-* **Trading Logic:**
+
+### 📉 Trading Logic
 
 | Condition | Interpretation | Strategy | Instrument |
 | :--- | :--- | :--- | :--- |
