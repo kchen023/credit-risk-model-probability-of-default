@@ -32,7 +32,7 @@ $$
     * Applied **Winsorization** to mitigate the impact of outliers common in corporate accounting data.
     * Performed **Standardization** (Z-score scaling) to allow for direct comparison of coefficient sensitivity across variables with vastly different scales.
 
-> **Key Finding:** Empirical results revealed that **Profitability ratios** often serve as a stronger predictor of corporate survival than pure Leverage metrics in specific market regimes.
+> **Key Finding:** Empirical results revealed that **Financial Ratios - Leverage, Profitability, Coverage**, and **Volatility** often serve as a stronger predictor of corporate survival than pure Leverage metrics in specific market regimes.
 
 ### 🔹 Part B: Structural Model (Merton 1974)
 * **Objective:** To estimate the "Distance-to-Default" by viewing firm equity as a **Call Option** on its underlying assets.
