@@ -58,7 +58,7 @@ $$
 
 ## 2. Model Outputs
 
-### Reduced Form: Key Outputs
+### 🔹 2.1 Reduced Form: Key Outputs
 **Part A Simulated Data and Logistic Regression**
 
 <p align="center">
@@ -73,7 +73,7 @@ $$
 
 
 
-### Structural Model (Merton): Monte Carlo Asset Paths
+### 🔹 2.2 Structural Model (Merton): Monte Carlo Asset Paths
 
 <p align="center">
   <img src="img/merton_paths_Ford.png" width="750">
@@ -84,7 +84,7 @@ against the debt barrier, producing a structural probability of default (PD) and
 
 Given that all simulated 10,000 paths witnesses the assets value sufficient to cover debt (shown as asset paths are above the "red" debt level), the probability of default is zero.
 
-### Strategy Signal (Model PD vs Market-Implied PD)
+### 🔹 2.3 Strategy Signal (Model PD vs Market-Implied PD)
 
 <p align="center">
   <img src="img/credit_signal.png" width="750">
