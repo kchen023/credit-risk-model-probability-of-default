@@ -62,13 +62,13 @@ $$
 **Part A Simulated Data and Logistic Regression**
 
 <p align="center">
-  <img src="img/logistic_simulated_data.png" width="750">
+  <img src="img/logistic_simulated_data.png" width="650">
 </p>
 
 **Part B Real Company Data and Logistic Regression**
 
 <p align="center">
-  <img src="img/logistic_industry_data.png" width="750">
+  <img src="img/logistic_industry_data.png" width="650">
 </p>
 
 
@@ -76,11 +76,11 @@ $$
 ### 🔹 2.2 Structural Model (Merton): Monte Carlo Asset Paths
 
 <p align="center">
-  <img src="img/merton_paths_Ford_1.png" width="750">
+  <img src="img/merton_paths_Ford_1.png" width="400">
 </p>
 
 <p align="center">
-  <img src="img/=merton_paths_Ford_2.png" width="750">
+  <img src="img/merton_paths_Ford_2.png" width="750">
 </p>
 
 In this case study of Ford Moter, Monte Carlo simulation generates stochastic asset value paths and compares them
@@ -91,7 +91,7 @@ Given that all simulated 10,000 paths witnesses the assets value sufficient to c
 ### 🔹 2.3 Strategy Signal (Model PD vs Market-Implied PD)
 
 <p align="center">
-  <img src="img/credit_signal.png" width="750">
+  <img src="img/credit_signal.png" width="650">
 </p>
 
 Signal = Model PD - Market PD. Positive signals indicate underpriced risk
